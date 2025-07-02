@@ -27,7 +27,7 @@ class ProductRecommender:
         print("Schema set to:", self.cursor.fetchone()[0])
 
     def load_data(self, partner_id, category=None, min_qty=1):
-        table = "Products"
+        table = "products"
         query = sql.SQL("SELECT * FROM {} WHERE partner_id = %s").format(sql.Identifier(table))
         self.cursor.execute(query, [partner_id])
         df = pd.DataFrame(self.cursor.fetchall(), columns=[desc[0] for desc in self.cursor.description])
